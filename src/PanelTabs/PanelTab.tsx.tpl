@@ -53,7 +53,6 @@ const PanelTab: React.FC<{ node: CachingNode }> = ({ node }) => {
       overlay={
         <Menu>
           <Menu.Item
-            style={{ fontSize: '12px', padding: '0px 12px' }}
             key="closeSelf"
             onClick={() => close({ name: node.name!!, location: node.location })}
           >
@@ -65,7 +64,6 @@ const PanelTab: React.FC<{ node: CachingNode }> = ({ node }) => {
             {{{ /useI18n }}}
           </Menu.Item>
           <Menu.Item
-            style={{ fontSize: '12px', padding: '0px 12px' }}
             key="closeOther"
             onClick={() => closeOther({ name: node.name!!, location: node.location })}
           >
@@ -77,7 +75,6 @@ const PanelTab: React.FC<{ node: CachingNode }> = ({ node }) => {
             {{{ /useI18n }}}
           </Menu.Item>
           <Menu.Item
-            style={{ fontSize: '12px', padding: '0px 12px' }}
             key="closeAll"
             onClick={closeAll}
           >
@@ -88,9 +85,8 @@ const PanelTab: React.FC<{ node: CachingNode }> = ({ node }) => {
             关闭所有
             {{{ /useI18n }}}
           </Menu.Item>
-          <Menu.Divider style={{ fontSize: '12px', padding: '0px 12px' }} />
+          <Menu.Divider />
           <Menu.Item
-            style={{ fontSize: '12px', padding: '0px 12px' }}
             key="refreshSelf"
             onClick={() => refresh({ name: node.name!!, location: node.location })}
           >
@@ -107,16 +103,9 @@ const PanelTab: React.FC<{ node: CachingNode }> = ({ node }) => {
     >
       <Tag
         ref={panelTabRef}
-        style={{
-          height: '26px',
-          marginTop: '5px',
-          textAlign: 'center',
-          lineHeight: '23px',
-          fontSize: '12px',
-          cursor: 'default',
-        }}
+        className={'panel-tabs-bar-tag'}
         {{{ #useAntPrimaryColor }}}
-        color={isActive ? 'var(--ant-primary-color)' : 'default'}
+        color={isActive ? 'processing' : 'default'}
         {{{ /useAntPrimaryColor }}}
         {{{ ^useAntPrimaryColor }}}
         color={isActive ? '{{{tabsTagColor}}}' : 'default'}

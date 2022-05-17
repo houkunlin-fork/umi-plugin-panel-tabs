@@ -108,6 +108,7 @@ export default function(api: IApi) {
     const files = [
       'index.ts',
       'PanelTabs/index.tsx',
+      'PanelTabs/index.less',
       'PanelTabs/PanelTab.tsx',
       'PanelTabs/PanelTabHook.ts',
       'Wrappers/PanelTabsWrapper.tsx',
