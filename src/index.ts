@@ -55,7 +55,7 @@ const modifyRoutes = (
   return routes;
 };
 
-export default function (api: IApi) {
+export default function(api: IApi) {
   api.describe({
     key: 'panelTab',
     config: {
@@ -68,8 +68,7 @@ export default function (api: IApi) {
         tabsLimit: 10,
         tabsLimitWait: 500,
         tabsLimitWarnTitle: '提示',
-        tabsLimitWarnContent:
-          '您当前打开页面过多, 请关闭不使用的页面以减少卡顿!',
+        tabsLimitWarnContent: '您当前打开页面过多, 请关闭不使用的页面以减少卡顿!',
       },
       schema(joi) {
         return joi.object({
@@ -98,113 +97,39 @@ export default function (api: IApi) {
       'menu',
     ),
   );
+  const pluginPath = 'plugin-panel-tabs';
   api.addUmiExports(() => [
     {
       exportAll: true,
-      source: '../plugin-panel-tabs',
+      source: `../${pluginPath}`,
     },
   ]);
   api.onGenerateFiles(async () => {
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/index.ts',
-      content: utils.Mustache.render(
-        readFileSync(join(__dirname, 'index.ts.tpl'), 'utf-8'),
-        {},
-      ),
-    });
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/PanelTabs/index.tsx',
-      content: utils.Mustache.render(
-        readFileSync(join(__dirname, 'PanelTabs', 'index.tsx.tpl'), 'utf-8'),
-        {
-          ...api.config.panelTab,
-          useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
-        },
-        {},
-        ['{{{', '}}}'],
-      ),
-    });
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/PanelTabs/PanelTab.tsx',
-      content: utils.Mustache.render(
-        readFileSync(join(__dirname, 'PanelTabs', 'PanelTab.tsx.tpl'), 'utf-8'),
-        {
-          ...api.config.panelTab,
-          useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
-          useAntPrimaryColor:
-            api.config.panelTab?.tabsTagColor?.startsWith('#') === true,
-        },
-        {},
-        ['{{{', '}}}'],
-      ),
-    });
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/PanelTabs/PanelTabHook.ts',
-      content: utils.Mustache.render(
-        readFileSync(
-          join(__dirname, 'PanelTabs', 'PanelTabHook.ts.tpl'),
-          'utf-8',
+    const files = [
+      'index.ts',
+      'PanelTabs/index.tsx',
+      'PanelTabs/PanelTab.tsx',
+      'PanelTabs/PanelTabHook.ts',
+      'Wrappers/PanelTabsWrapper.tsx',
+      'Wrappers/PanelTabsAndRouteAuthWrapper.tsx',
+      'Wrappers/RouteAuthWrapper.tsx',
+      'Result/404.tsx',
+    ];
+    const viewVars = {
+      ...api.config.panelTab,
+      useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
+      useAntPrimaryColor: api.config.panelTab?.tabsTagColor?.startsWith('#') === true,
+    };
+    files.forEach(filename => {
+      api.writeTmpFile({
+        path: `${pluginPath}/${filename}`,
+        content: utils.Mustache.render(
+          readFileSync(join(__dirname, `${filename}.tpl`), 'utf-8'),
+          viewVars,
+          {},
+          ['{{{', '}}}'],
         ),
-        {
-          useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
-        },
-        {},
-        ['{{{', '}}}'],
-      ),
-    });
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/Wrappers/PanelTabsWrapper.tsx',
-      content: utils.Mustache.render(
-        readFileSync(
-          join(__dirname, 'Wrappers', 'PanelTabsWrapper.tsx.tpl'),
-          'utf-8',
-        ),
-        {
-          ...api.config.panelTab,
-          useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
-        },
-        {},
-        ['{{{', '}}}'],
-      ),
-    });
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/Wrappers/PanelTabsAndRouteAuthWrapper.tsx',
-      content: utils.Mustache.render(
-        readFileSync(
-          join(__dirname, 'Wrappers', 'PanelTabsAndRouteAuthWrapper.tsx.tpl'),
-          'utf-8',
-        ),
-        {
-          useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
-        },
-        {},
-        ['{{{', '}}}'],
-      ),
-    });
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/Wrappers/RouteAuthWrapper.tsx',
-      content: utils.Mustache.render(
-        readFileSync(
-          join(__dirname, 'Wrappers', 'RouteAuthWrapper.tsx.tpl'),
-          'utf-8',
-        ),
-        {
-          useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
-        },
-        {},
-        ['{{{', '}}}'],
-      ),
-    });
-    api.writeTmpFile({
-      path: 'plugin-panel-tabs/Result/404.tsx',
-      content: utils.Mustache.render(
-        readFileSync(join(__dirname, 'Result', '404.tsx.tpl'), 'utf-8'),
-        {
-          useI18n: api.userConfig?.locale && api.config.panelTab?.autoI18n,
-        },
-        {},
-        ['{{{', '}}}'],
-      ),
+      });
     });
   });
 
