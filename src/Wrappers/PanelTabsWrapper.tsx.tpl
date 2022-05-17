@@ -10,7 +10,7 @@ import PanelTabs from '@@/plugin-panel-tabs/PanelTabs';
 // @ts-ignore
 import { KeepAlive } from 'react-activation';
 import type { IRoute } from '@umijs/core';
-import { Modal } from 'antd';
+import { message } from 'antd';
 import { useAliveController } from '@@/core/umiExports';
 import { useDebounceFn } from 'ahooks';
 
@@ -27,16 +27,10 @@ const PanelTabsWrapper: FC<{ route: IRoute; children: React.ReactNode }> = ({
   const useDebounce = useDebounceFn(
     () =>
       {{{ #useI18n }}}
-      Modal.warn({
-        title: intl.formatMessage({id: 'panelTab.tabsLimitWarnTitle', defaultMessage: '{{{ tabsLimitWarnTitle }}}'}),
-        content: intl.formatMessage({id: 'panelTab.tabsLimitWarnContent', defaultMessage: '{{{ tabsLimitWarnContent }}}'}),
-      }),
+      message.warning(intl.formatMessage({id: 'panelTab.tabsLimitWarnContent', defaultMessage: '您当前打开页面过多, 请关闭不使用的页面以减少卡顿!'})),
       {{{ /useI18n }}}
       {{{ ^useI18n }}}
-      Modal.warn({
-        title: '{{{ tabsLimitWarnTitle }}}',
-        content: '{{{ tabsLimitWarnContent }}}',
-      }),
+      message.warning('{{{ tabsLimitWarnContent }}}'),
       {{{ /useI18n }}}
     { wait: {{{ tabsLimitWait }}} },
   );

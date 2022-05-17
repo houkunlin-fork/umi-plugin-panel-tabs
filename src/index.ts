@@ -66,8 +66,7 @@ export default function(api: IApi) {
         tabsBarBackgroundColor: '#FFFFFF',
         tabsTagColor: '#1890ff',
         tabsLimit: 10,
-        tabsLimitWait: 500,
-        tabsLimitWarnTitle: '提示',
+        tabsLimitWait: 1500,
         tabsLimitWarnContent: '您当前打开页面过多, 请关闭不使用的页面以减少卡顿!',
       },
       schema(joi) {
@@ -79,7 +78,6 @@ export default function(api: IApi) {
           tabsTagColor: joi.string(),
           tabsLimit: joi.number(),
           tabsLimitWait: joi.number(),
-          tabsLimitWarnTitle: joi.string(),
           tabsLimitWarnContent: joi.string(),
         });
       },
