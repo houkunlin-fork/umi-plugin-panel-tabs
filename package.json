@@ -1,11 +1,13 @@
 {
-  "name": "umi-plugin-panel-tabs",
+  "name": "@houkunlin/umi-plugin-panel-tabs",
   "main": "lib/index.js",
-  "repository": "https://github.com/fangzhengjin/umi-plugin-panel-tabs",
+  "repository": "https://github.com/houkunlin-fork/umi-plugin-panel-tabs.git",
   "scripts": {
     "start": "cross-env APP_ROOT=example umi dev",
     "build": "father-build",
-    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'"
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "publish": "father-build && npm publish --access public --registry=https://registry.npmjs.org/"
   },
   "lint-staged": {
     "*.ts?(x)": [
@@ -30,7 +32,13 @@
     "father-build": "^1.21.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.6.2"
+    "typescript": "^4.6.2",
+    "umi": "^3.0.0-beta.7",
+    "@types/jest": "^25.1.2",
+    "@umijs/test": "^3.0.0-beta.1"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^2.1.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -38,5 +46,5 @@
   "files": [
     "lib"
   ],
-  "version": "0.0.27"
+  "version": "0.0.1-beta.1"
 }

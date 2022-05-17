@@ -1,8 +1,7 @@
-# umi-plugin-panel-tabs
+# @houkunlin/umi-plugin-panel-tabs
 
-[![NPM version](https://img.shields.io/npm/v/umi-plugin-panel-tabs.svg?style=flat)](https://npmjs.org/package/umi-plugin-panel-tabs) [![NPM downloads](http://img.shields.io/npm/dm/umi-plugin-panel-tabs.svg?style=flat)](https://npmjs.org/package/umi-plugin-panel-tabs) [![Netlify Status](https://api.netlify.com/api/v1/badges/10453ec4-945e-41c7-844e-4e7e6a2027b2/deploy-status)](https://app.netlify.com/sites/vibrant-leakey-d5b34a/deploys)
-
-## 演示地址 [https://vibrant-leakey-d5b34a.netlify.app]
+[![NPM version](https://img.shields.io/npm/v/@houkunlin/umi-plugin-panel-tabs?style=flat)](https://npmjs.org/package/@houkunlin/umi-plugin-panel-tabs)
+[![NPM downloads](http://img.shields.io/npm/dm/@houkunlin/umi-plugin-panel-tabs.svg?style=flat)](https://npmjs.org/package/@houkunlin/umi-plugin-panel-tabs)
 
 ![image](https://user-images.githubusercontent.com/12680972/147438313-e73a3148-1bc0-438a-9e6f-28d1bad8a25a.png)
 
@@ -26,7 +25,6 @@ export default defineConfig({
     autoI18n: true,
     tabsLimit: 10,
     tabsLimitWait: 500,
-    tabsLimitWarnTitle: '提示',
     tabsLimitWarnContent: '您当前打开页面过多, 请关闭不使用的页面以减少卡顿!',
     tabsBarBackgroundColor: '#FFFFFF',
     tabsTagColor: '#1890ff',
@@ -41,7 +39,6 @@ export default defineConfig({
 | autoI18n | boolean | false (**0.0.25**之前的版本默认为 true) | 自动开启国际化, 仅当 ant-design-pro 的 locale 不为 false 且不为空时生效 | - |
 | tabsLimit | number | 10 | 用户打开多少页签时弹出提示 | - |
 | tabsLimitWait | number | 500 | 页签数量检查防抖时间, 如果一次弹出了多个提示框, 可以适当延长此时间, 单位毫秒 | - |
-| tabsLimitWarnTitle | string | 提示 | [配置国际化后此项不生效] 页签数量超限弹窗的标题 | - |
 | tabsLimitWarnContent | string | 您当前打开页面过多, 请关闭不使用的页面以减少卡顿! | [配置国际化后此项不生效] 页签数量超限弹窗的内容 | - |
 | tabsBarBackgroundColor | string | #FFFFFF | 标签栏背景色 | 0.0.26 |
 | tabsTagColor | string | #1890ff | 标签颜色 | 0.0.26 |
@@ -57,7 +54,6 @@ export default defineConfig({
 | panelTab.closeOther | 关闭其他 |
 | panelTab.closeAll | 关闭所有 |
 | panelTab.refresh | 刷新 |
-| panelTab.tabsLimitWarnTitle | 提示 |
 | panelTab.tabsLimitWarnContent | 您当前打开页面过多, 请关闭不使用的页面以减少卡顿! |
 
 ## 额外的配置项
